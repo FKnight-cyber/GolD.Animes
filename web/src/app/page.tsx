@@ -3,7 +3,7 @@ import { Container } from './style'
 import DeskMenu from '@/components/DeskMenu'
 import MainMobileHeader from '@/components/MainHeader'
 
-export default function Home() {
+export default function Main() {
   return (
     <Container>
       <DeskMenu />

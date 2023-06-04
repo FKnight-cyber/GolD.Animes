@@ -18,7 +18,7 @@ export default function MobileMenu() {
         <h6>Menu</h6>
       </div>
       <div className="options">
-        <Link className='option' href={''}>
+        <Link className='option' href={'/home'}>
           Home
         </Link>
       </div>

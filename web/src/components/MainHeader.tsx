@@ -10,19 +10,22 @@ import MobileMenu from './Mobile/MobileMenu';
 
 import logo from '../assets/logo.png';
 import bg from '../assets/header3.jpeg';
+import Link from 'next/link';
 
 export default function MainMobileHeader() {
   return (
     <Container>
       <MobileMenu />
       <div className='p2'>
-        <Image
-          className='logo'
-          alt=''
-          src={logo}
-          height={70}
-          width={250}
-        />
+        <Link href={'/home'}>
+          <Image
+            className='logo'
+            alt=''
+            src={logo}
+            height={70}
+            width={250}
+          />
+        </Link>
       </div>
       <div className="p3"
       style={{

@@ -1,13 +1,12 @@
 'use client'
 
 import styled from 'styled-components';
-import { Menu } from 'lucide-react';
 import Link from 'next/link';
 
 export default function DeskMenu() {
   return (
     <Container>
-      <Link className='option' href={''}>
+      <Link className='option' href={'/home'}>
         Home
       </Link>
     </Container>

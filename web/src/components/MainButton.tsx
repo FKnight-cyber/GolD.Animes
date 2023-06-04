@@ -2,11 +2,14 @@
 
 import styled from 'styled-components';
 import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
 export default function MainButton() {
   return (
     <Container>
-      View Full Site
+      <Link style={{textDecoration:'none', color:'inherit'}} href={'/home'}>
+        View Full Site
+      </Link>
       <ArrowRight
         className='icon' 
         color='#fff'
