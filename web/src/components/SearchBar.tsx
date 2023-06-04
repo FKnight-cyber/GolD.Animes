@@ -64,5 +64,9 @@ const Container = styled.div`
     height: 50px;
     border-radius: 50%;
     background-color: crimson;
+
+    :hover {
+      cursor: pointer;
+    }
   }
 `

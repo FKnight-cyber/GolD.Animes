@@ -2,18 +2,20 @@
 
 import styled from 'styled-components';
 import { Menu } from 'lucide-react';
-import SearchBar from './SearchBar';
 import Image from 'next/image';
 
-import logo from '../assets/logo.png'
+import SearchBar from '../SearchBar';
+import SearchResults from '../SearchResults';
+import MainButton from '../MainButton';
+import MobileMenu from './MobileMenu';
+
+import logo from '../../assets/logo.png';
+import bg from '../../assets/zerotwo.jpg';
 
 export default function MainMobileHeader() {
   return (
     <Container>
-      <div className='p1'>
-        <Menu color='white' />
-        <h6>Menu</h6>
-      </div>
+      <MobileMenu />
       <div className='p2'>
         <Image
           className='logo'
@@ -22,7 +24,16 @@ export default function MainMobileHeader() {
           height={70}
           width={250}
         />
+      </div>
+      <div className="p3" style={{
+      backgroundImage: `url(${bg.src})`,
+      backgroundRepeat: 'no-repeat',
+      width: '100%',
+      height: '70%',
+    }}>
         <SearchBar />
+        <SearchResults />
+        <MainButton />
       </div>
     </Container>
   )
@@ -30,6 +41,7 @@ export default function MainMobileHeader() {
 
 const Container = styled.div`
   width: 100%;
+  height: 86%;
 
   .logo {
     margin: 24px 0;
@@ -59,5 +71,12 @@ const Container = styled.div`
     h1 {
       color: white;
     }
+  }
+
+  .p3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
   }
 `
