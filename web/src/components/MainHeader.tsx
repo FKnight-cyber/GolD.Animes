@@ -1,16 +1,15 @@
 'use client'
 
 import styled from 'styled-components';
-import { Menu } from 'lucide-react';
 import Image from 'next/image';
 
-import SearchBar from '../SearchBar';
-import SearchResults from '../SearchResults';
-import MainButton from '../MainButton';
-import MobileMenu from './MobileMenu';
+import SearchBar from './SearchBar';
+import SearchResults from './SearchResults';
+import MainButton from './MainButton';
+import MobileMenu from './Mobile/MobileMenu';
 
-import logo from '../../assets/logo.png';
-import bg from '../../assets/zerotwo.jpg';
+import logo from '../assets/logo.png';
+import bg from '../assets/header3.jpeg';
 
 export default function MainMobileHeader() {
   return (
@@ -25,12 +24,16 @@ export default function MainMobileHeader() {
           width={250}
         />
       </div>
-      <div className="p3" style={{
-      backgroundImage: `url(${bg.src})`,
-      backgroundRepeat: 'no-repeat',
-      width: '100%',
-      height: '70%',
-    }}>
+      <div className="p3"
+      style={{
+        backgroundImage: `url(${bg.src})`,
+        backgroundRepeat: 'no-repeat',
+        width: '100%',
+        height: '70%',
+        maxWidth:'1500px',
+        maxHeight: '500px',
+        position: 'relative',
+      }}>
         <SearchBar />
         <SearchResults />
         <MainButton />
@@ -71,12 +74,33 @@ const Container = styled.div`
     h1 {
       color: white;
     }
+
+    @media (min-width: 524px) and (max-width: 775px) {
+      align-items: start;
+      margin-left: 28px;
+    }
   }
 
   .p3 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
+  }
+
+  @media (min-width: 776px) {
+    .p2 {
+      margin-top: 40px;
+      margin-bottom: 60px;
+      align-items: start;
+
+      .logo {
+        width: 220px;
+        height: 60px;
+      }
+    }
+
+    .p3 {
+      align-items: flex-start;
+    }
   }
 `

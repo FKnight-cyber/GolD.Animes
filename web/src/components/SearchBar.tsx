@@ -24,18 +24,17 @@ export default function SearchBar() {
 }
 
 const Container = styled.div`
+  width: 100%;
+
   .p1 {
     display: flex;
     justify-content: space-around;
-    width: 100%;
-
+    
     input {
-      width: 265px;
+      width: 80%;
       height: 50px;
 
       border-radius: 30px;
-      margin-right: 12px;
-
       padding-left: 16px;
 
       font-size: 16px;
@@ -62,11 +61,21 @@ const Container = styled.div`
 
     width: 50px;
     height: 50px;
-    border-radius: 50%;
+    border-radius: 25px;
     background-color: crimson;
 
     :hover {
       cursor: pointer;
+    }
+  }
+
+  @media (min-width: 776px) {
+    width: 700px;
+    position: absolute;
+    top: -70px;
+
+    input {
+      width: 600px !important;
     }
   }
 `

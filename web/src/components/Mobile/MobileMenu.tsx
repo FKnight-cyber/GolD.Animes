@@ -14,7 +14,7 @@ export default function MobileMenu() {
   return (
     <Container openMenu={openMenu}>
       <div className='p1' onClick={() => setOpenMenu(!openMenu)}>
-        <Menu color='white' />
+        <Menu color={openMenu ? 'crimson' : '#fff'} />
         <h6>Menu</h6>
       </div>
       <div className="options">
@@ -32,6 +32,10 @@ const Container = styled.div<Menu>`
   .p1 {
     width: 80px;
     cursor: pointer;
+
+    h6 {
+      color: ${props => props.openMenu ? 'crimson' : '#fff'};
+    }
   }
 
   .options{
@@ -62,5 +66,9 @@ const Container = styled.div<Menu>`
 
       background-color: transparent;
     }
+  }
+
+  @media (min-width: 776px) {
+    display: none;
   }
 `

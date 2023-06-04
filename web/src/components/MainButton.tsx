@@ -39,4 +39,10 @@ const Container = styled.button`
   .icon {
     margin-left: 8px;
   }
+
+  @media (min-width: 776px) {
+    width: 100%;
+    bottom: -50px;
+    border-radius: 0 0 30px 30px;
+  }
 `

@@ -7,7 +7,7 @@ import { api } from '@/lib/api';
 import Link from 'next/link';
 
 export default function SearchResults() {
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState(['teste 1', 'teste 2', 'Kimetsu no Yaiba: shingeki village demonstration', 'awdhaiwuhd awudhauhdwiwuahd awudhioauwdhi awudh', 'auwhdiauwhdiua awudhaiouwdhiuawhd auwdhuawhd uawduwadhiawud']);
 
   return (
     <Container>
@@ -29,7 +29,14 @@ const Container = styled.div`
   margin-top: 12px;
 
   span {
-    color: #fff;
+    color: #000;
+    font-size: 20px;
+    font-weight: bolder;
+  }
+
+  @media (min-width: 776px) {
+    width: 700px;
+    padding: 20px;
   }
 `;
 
@@ -40,8 +47,10 @@ const SearchLink = styled.a`
   overflow: hidden;
   white-space: nowrap;
   max-width: 22ch;
-  color: #aaa;
+  color: #000;
   text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
 
   :hover {
     color: crimson;
