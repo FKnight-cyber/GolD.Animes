@@ -9,14 +9,13 @@ import 'swiper/css/pagination';
 
 import styled from 'styled-components';
 
-// Import required modules
 import SwiperCore, { Pagination, Navigation, Autoplay } from 'swiper';
 
-// Install required Swiper modules
 SwiperCore.use([Pagination, Navigation, Autoplay]);
 
 interface Slide {
   backgroundImage: string;
+  active: boolean;
 }
 
 export default function Carousel({ slides }: { slides: any[] }) {
@@ -35,7 +34,6 @@ export default function Carousel({ slides }: { slides: any[] }) {
           loop={true}
           autoplay={{ delay: 3000 }}
           onSlideChange={handleSlideChange}
-          preloadImages={true}
           mousewheel={true}
         >
           {slides.map((slide: any, index: number) => (
