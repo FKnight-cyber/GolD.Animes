@@ -1,82 +1,102 @@
-'use client'
+'use client';
 
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { PlayCircle, ChevronRight } from 'lucide-react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+import styled from 'styled-components';
+
+// Import required modules
+import SwiperCore, { Pagination, Navigation, Autoplay } from 'swiper';
+
+// Install required Swiper modules
+SwiperCore.use([Pagination, Navigation, Autoplay]);
 
 interface Slide {
-  backgroundImage: string
+  backgroundImage: string;
 }
 
-export default function Carousel({ slides } : { slides: any[]}) {
-  const [currentSlide, setCurrentSlide] = useState(0);
+export default function Carousel({ slides }: { slides: any[] }) {
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const handleSlideChange = (direction:any) => {
-    if (direction === 'prev') {
-      setCurrentSlide(currentSlide === 0 ? slides.length - 1 : currentSlide - 1);
-    } else {
-      setCurrentSlide(currentSlide === slides.length - 1 ? 0 : currentSlide + 1);
-    }
+  const handleSlideChange = (swiper: any) => {
+    setActiveIndex(swiper.activeIndex);
   };
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prevSlide) => (prevSlide === slides.length - 1 ? 0 : prevSlide + 1));
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [slides.length]);
-
   return (
-    <Container>
-      <div className="slides">
-        {slides.map((slide:any, index:number) => (
-          <Slide
-            backgroundImage={slide.backgroundImage}
-            className={`slide ${index === currentSlide ? 'active' : ''}`}
-            key={index}
-          >
-            <Content>
-              <h2>#{index + 1} Spotlight</h2>
-              <h1>{slide.contentTitle}</h1>
-              <div className="moreInfo">
-                <p>{slide.releaseDate}</p>
-              </div>
-              <div className="description">
-                <h3>{slide.description}</h3>
-              </div>
-              <div className="buttons">
-                <button className='watch'>
-                  <PlayCircle />
-                  Watch Now
-                </button>
-                <button className='details'>
-                  Detail
-                  <ChevronRight width={16} />
-                </button>
-              </div>
-            </Content>
-          </Slide>
-        ))}
-      </div>
-    </Container>
+      <SwiperWrapper>
+        <Swiper
+          pagination={{ clickable: true }}
+          spaceBetween={10}
+          slidesPerView={1}
+          loop={true}
+          autoplay={{ delay: 3000 }}
+          onSlideChange={handleSlideChange}
+          preloadImages={true}
+          mousewheel={true}
+        >
+          {slides.map((slide: any, index: number) => (
+            <SwiperSlide key={index}>
+              <Slide
+                backgroundImage={slide.backgroundImage}
+                active={activeIndex === index}
+              >
+                <Content>
+                  <h2>#{index + 1} Spotlight</h2>
+                  <h1>{slide.contentTitle}</h1>
+                  <div className="moreInfo">
+                    <p>{slide.releaseDate}</p>
+                  </div>
+                  <div className="description">
+                    <h3>{slide.description}</h3>
+                  </div>
+                  <div className="buttons">
+                    <button className="watch">
+                      <PlayCircle />
+                      Watch Now
+                    </button>
+                    <button className="details">
+                      Detail
+                      <ChevronRight width={16} />
+                    </button>
+                  </div>
+                </Content>
+              </Slide>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </SwiperWrapper>
   );
-};
+}
 
-const Container = styled.div`
+const SwiperWrapper = styled.div`
   width: 100%;
   height: 48vh;
-  background-color: red;
 
-`
+  .swiper-pagination {
+    bottom: 2px;
+  }
+
+  .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    background: white;
+  }
+
+  .swiper-pagination-bullet-active {
+    background: crimson;
+  }
+`;
 
 const Content = styled.div`
   display: flex;
   flex-direction: column;
   width: 80%;
-
   position: absolute;
-  bottom: 0;
+  bottom: 20px;
 
   h1 {
     color: #fff;
@@ -101,15 +121,14 @@ const Content = styled.div`
       color: #b0aeb0;
       font-size: 12px;
       font-weight: 400;
-      text-overflow: ellipsis;
       overflow: hidden;
       word-break: break-word;
     }
 
     h3:after {
-      content:'...';
-      background:inherit;
-      position:absolute;
+      content: '...';
+      background: inherit;
+      position: absolute;
       bottom: 0;
       right: -2px;
     }
@@ -117,14 +136,14 @@ const Content = styled.div`
 
   .moreInfo {
     display: none;
-   }
+  }
 
   .buttons {
     display: flex;
     justify-content: space-around;
     width: 220px;
   }
-  
+
   button {
     display: flex;
     justify-content: space-around;
@@ -145,19 +164,18 @@ const Content = styled.div`
 
   .details {
     width: 72px;
-    background-color: #4A4B51;
+    background-color: #4a4b51;
     color: #fff;
   }
-`
+`;
 
 const Slide = styled.div<Slide>`
   width: 100%;
   height: 48vh;
   padding: 12px;
-  background: linear-gradient(0deg,#202125 0,rgba(32,33,37,0) 82%), url(${props => props.backgroundImage});
+  background: linear-gradient(0deg, #202125 0, rgba(32, 33, 37, 0) 82%),
+    url(${(props) => props.backgroundImage});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-
-  position: relative;
-`
+`;
