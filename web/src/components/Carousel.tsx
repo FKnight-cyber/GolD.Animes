@@ -1,15 +1,15 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { PlayCircle, ChevronRight, Timer, Calendar } from 'lucide-react';
+import styled from 'styled-components';
+import axios from 'axios';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-
-import styled from 'styled-components';
-
 import SwiperCore, { Pagination, Navigation, Autoplay } from 'swiper';
+import { api } from '@/lib/api';
 
 SwiperCore.use([Pagination, Navigation, Autoplay]);
 
@@ -18,8 +18,20 @@ interface Slide {
   active: boolean;
 }
 
-export default function Carousel({ slides }: { slides: any[] }) {
+export default function Carousel() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [slides, setSlides] = useState([]);
+
+  useEffect(() => {
+    const response = api.get('/trending');
+    response.then((res) => {
+      setSlides(res.data);
+    });
+    response.catch((Error) => {
+      console.log(Error)
+    })
+  },[])
+
 
   const handleSlideChange = (swiper: any) => {
     setActiveIndex(swiper.activeIndex);
@@ -39,26 +51,25 @@ export default function Carousel({ slides }: { slides: any[] }) {
           {slides.map((slide: any, index: number) => (
             <SwiperSlide key={index}>
               <Slide
-                backgroundImage={slide.backgroundImage}
+                backgroundImage={slide.coverImage.extraLarge}
                 active={activeIndex === index}
               >
                 <Content>
                   <h2>#{index + 1} Spotlight</h2>
-                  <h1>{slide.contentTitle}</h1>
+                  <h1>{slide.title.romaji}</h1>
                   <div className="moreInfo">
                     <div>
                       <PlayCircle className='icon' color='#fff' />
-                      <h4>{slide.info.media}</h4>
+                      <h4>{slide.format}</h4>
                     </div>
                     <div>
                       <Timer className='icon' color='#fff' />
-                      <h4>{slide.info.duration}</h4>
+                      <h4>23m</h4>
                     </div>
                     <div className='calendar'>
                       <Calendar className='icon' color='#fff' />
-                      <h4>{slide.info.releaseDate}</h4>
-                    </div>
-                    {slide.info.hasHD ? <span>HD</span> : ''}               
+                      <h4>{slide.startDate}</h4>
+                    </div>               
                   </div>
                   <div className="description">
                     <h3>{slide.description}</h3>
@@ -140,14 +151,6 @@ const Content = styled.div`
       font-weight: 400;
       overflow: hidden;
       word-break: break-word;
-    }
-
-    h3:after {
-      content: '...';
-      background: inherit;
-      position: absolute;
-      bottom: 0;
-      right: -2px;
     }
   }
 

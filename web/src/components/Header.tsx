@@ -56,4 +56,10 @@ const Container = styled.div`
       }
     }
   }
+
+  @media (min-width: 1294px) {
+    position: fixed;
+    top: 0;
+    z-index: 2;
+  }
 `
