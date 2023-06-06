@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { PlayCircle, ChevronRight } from 'lucide-react';
+import { PlayCircle, ChevronRight, Timer, Calendar } from 'lucide-react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -32,7 +32,7 @@ export default function Carousel({ slides }: { slides: any[] }) {
           spaceBetween={10}
           slidesPerView={1}
           loop={true}
-          autoplay={{ delay: 3000 }}
+          autoplay={{ delay: 2500 , disableOnInteraction:false}}
           onSlideChange={handleSlideChange}
           mousewheel={true}
         >
@@ -46,7 +46,19 @@ export default function Carousel({ slides }: { slides: any[] }) {
                   <h2>#{index + 1} Spotlight</h2>
                   <h1>{slide.contentTitle}</h1>
                   <div className="moreInfo">
-                    <p>{slide.releaseDate}</p>
+                    <div>
+                      <PlayCircle className='icon' color='#fff' />
+                      <h4>{slide.info.media}</h4>
+                    </div>
+                    <div>
+                      <Timer className='icon' color='#fff' />
+                      <h4>{slide.info.duration}</h4>
+                    </div>
+                    <div className='calendar'>
+                      <Calendar className='icon' color='#fff' />
+                      <h4>{slide.info.releaseDate}</h4>
+                    </div>
+                    {slide.info.hasHD ? <span>HD</span> : ''}               
                   </div>
                   <div className="description">
                     <h3>{slide.description}</h3>
@@ -71,8 +83,15 @@ export default function Carousel({ slides }: { slides: any[] }) {
 }
 
 const SwiperWrapper = styled.div`
-  width: 100%;
-  height: 48vh;
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+
+  :active{
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+  }
 
   .swiper-pagination {
     bottom: 2px;
@@ -94,7 +113,7 @@ const Content = styled.div`
   flex-direction: column;
   width: 80%;
   position: absolute;
-  bottom: 20px;
+  bottom: 24px;
 
   h1 {
     color: #fff;
@@ -165,10 +184,92 @@ const Content = styled.div`
     background-color: #4a4b51;
     color: #fff;
   }
+
+  @media (min-width: 776px) {
+    width: 50%;
+    padding-left: 40px;
+    margin-bottom: 40px;
+
+    h1, h2 {
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 60px;
+    }
+
+    h2 {
+      font-size: 16px;
+    }
+
+    .description {
+      margin-bottom: 30px;
+
+      h3 {
+        height: 10vh;
+        color: #b0aeb0;
+        font-size: 14px;
+        line-height: 24px;
+      }
+    }
+
+    .buttons {
+      width: 260px;
+    }
+
+    button {
+      height: 38px;
+      font-size: 16px;
+    }
+
+    .watch {
+      width: 140px;
+    }
+
+    .details {
+      width: 82px;
+    }
+
+    .moreInfo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+
+      h4 {
+        color: #fff;
+        font-size: 14px;
+      }
+
+      div {
+        display: flex;
+        align-items: center;
+        width: 70px;
+
+        margin-right: 8px;
+
+        .icon {
+          margin-right: 4px;
+        }
+      }
+
+      .calendar {
+        width: 120px;
+      }
+
+      span {
+        padding: 3px 4px;
+        background: crimson;
+        color: #111;
+        border-radius: 5px;
+        line-height: 1em;
+        font-weight: 600;
+        font-size: 12px;
+      }
+    }
+  }
 `;
 
 const Slide = styled.div<Slide>`
-  width: 100%;
   height: 48vh;
   padding: 12px;
   background: linear-gradient(0deg, #202125 0, rgba(32, 33, 37, 0) 82%),
@@ -176,4 +277,15 @@ const Slide = styled.div<Slide>`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+
+  @media (min-width: 776px) {
+    height: 62vh;
+    background: 
+    linear-gradient(180deg, #202125 0, rgba(32, 33, 37, 0) 40%, #202125 100%),
+    linear-gradient(90deg, #202125 0, rgba(32, 33, 37, 0) 70%, #202125 100%),
+    url(${(props) => props.backgroundImage});
+    background-size: cover;
+    background-position: center;
+    mix-blend-mode: multiply;
+  }
 `;
