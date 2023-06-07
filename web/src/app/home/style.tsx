@@ -6,7 +6,18 @@ export const Container = styled.div`
   height: 100vh;
   overflow-y: scroll;
   overflow-x: hidden;
-  background-color: #202125; 
+  background-color: #202125;
+
+  .topic {
+    width: 100%;
+    height: 36px;
+    padding-left: 15px;
+    h1 {
+      color: crimson;
+      font-weight: 600;
+      font-size: 20px;
+    }
+  }
 
   @media (min-width: 776px) {
     box-sizing: content-box;

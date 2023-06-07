@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { PlayCircle, ChevronRight, Timer, Calendar } from 'lucide-react';
 import styled from 'styled-components';
-import axios from 'axios';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -18,7 +17,7 @@ interface Slide {
   active: boolean;
 }
 
-export default function Carousel() {
+export default function Spotlight() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [slides, setSlides] = useState([]);
 
