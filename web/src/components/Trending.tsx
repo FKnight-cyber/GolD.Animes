@@ -11,6 +11,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
 import ShareBar from "./ShareBar";
+import AnimeCardInfo from "./AnimeCardInfo";
 
 import zerotwo from "../assets/chibizero2.jpg"
 
@@ -54,28 +55,9 @@ export default function Trending() {
                   <h1>{slide.title.romaji}</h1>
                   <h2>{String(index + 1).padStart(2, '0')}</h2>
                 </div>
-                <Info className="hide">
-                  <h1>{slide.title.romaji}</h1>
-                  <div className="moreInfo">
-                    <IoStar width={20} color="yellow" />
-                    <h2>7.43</h2>
-                  </div>
-                  <h2 className="description">{slide.description}</h2>
-                  <h2>Japanese: <span>Watashi</span></h2>
-                  <h2>Synonyms: <span>Demon Slayer, Kimetsu no Yaiba</span></h2>
-                  <h2>Aired: <span>Apr 9, 2023</span></h2>
-                  <h2>Status: <span>Currently Airing</span></h2>
-                  <h2 className="genres">Genres: <span> Action, Adventure, Demons, Historical, Shounen, Super Power</span></h2>
-                  <div className="buttons">
-                    <button className="watch">
-                      <Play />
-                      Watch Now
-                    </button>
-                    <button className="add">
-                      +
-                    </button>
-                  </div>
-                </Info>
+                <div className="hide">
+                  <AnimeCardInfo info={slide} />
+                </div>
               </Slide>
             </SwiperSlide>
           ))

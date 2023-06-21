@@ -26,6 +26,7 @@ async function trendingAnimes() {
                 coverImage {
                   extraLarge
                 }
+                isAdult
             }
           }
         }`;

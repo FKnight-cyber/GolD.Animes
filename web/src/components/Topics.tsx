@@ -51,7 +51,6 @@ const Container = styled.div`
     align-items: center;
     width: 100%;
     margin-bottom: 20px;
-    padding: 0 15px;
     
     h1 {
       color: crimson;
