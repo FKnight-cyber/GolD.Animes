@@ -2,19 +2,14 @@ import { Container } from './style'
 
 import DeskMenu from '@/components/DeskMenu'
 import MainMobileHeader from '@/components/MainHeader'
+import ShareBar from '@/components/ShareBar'
 
 export default function Main() {
   return (
     <Container>
       <DeskMenu />
       <MainMobileHeader />
-      <div className="share">
-        <div className="bar"></div>
-        <div className="text">
-          <h2>Share GolD.</h2>
-          <h6>with your friends</h6>
-        </div>
-      </div>
+      <ShareBar isMain={true} element={<div className="bar"></div>} />
     </Container>
   )
 }

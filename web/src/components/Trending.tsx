@@ -1,12 +1,18 @@
 'use client'
 
 import styled from "styled-components"
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { api } from '@/lib/api';
 import { Play } from 'lucide-react';
+import { IoStar } from "react-icons/io5";
+import Image from "next/image";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+
+import ShareBar from "./ShareBar";
+
+import zerotwo from "../assets/chibizero2.jpg"
 
 interface Slide {
   backgroundImage: string;
@@ -50,6 +56,10 @@ export default function Trending() {
                 </div>
                 <Info className="hide">
                   <h1>{slide.title.romaji}</h1>
+                  <div className="moreInfo">
+                    <IoStar width={20} color="yellow" />
+                    <h2>7.43</h2>
+                  </div>
                   <h2 className="description">{slide.description}</h2>
                   <h2>Japanese: <span>Watashi</span></h2>
                   <h2>Synonyms: <span>Demon Slayer, Kimetsu no Yaiba</span></h2>
@@ -71,6 +81,11 @@ export default function Trending() {
           ))
         }
       </Swiper>
+      <ShareBar isMain={false} element={
+        <div className="image">
+          <Image width={80} height={80} alt="" src={zerotwo} />
+        </div>
+      }/>
     </Container>
   )
 }
@@ -79,6 +94,7 @@ const Container = styled.div`
   cursor: grab;
   cursor: -moz-grab;
   cursor: -webkit-grab;
+  background-color: #121315;
 
   :active{
     cursor: grabbing;
@@ -96,12 +112,11 @@ const Container = styled.div`
   }
 
   @media (min-width: 776px) {
-    margin-left: 20px;
-      .swiper-slide{
-        width: 18% !important;
-        height: 36vh;
-      }
+    .swiper-slide{
+      width: 18% !important;
+      height: 36vh;
     }
+  }
 `
 
 const Slide = styled.div<Slide>`
@@ -201,11 +216,25 @@ const Info = styled.div`
     word-wrap: break-word;
     overflow: hidden;
     height: 34px;
+  }
+
+  .moreInfo {
+    display: flex;
+    align-items: center;
+    min-width: 50px;
+    width: 14%;
+    justify-content: space-around;
+    height: 28px;
     margin-bottom: 12px;
+
+    h2 {
+      font-size: 14px;
+      margin-bottom: 0;
+    }
   }
 
   .description {
-    height: 72px;
+    height: 45px;
     margin-bottom: 12px;
   }
 

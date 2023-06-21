@@ -12,6 +12,7 @@ export const Container = styled.div`
     width: 100%;
     height: 36px;
     padding-left: 15px;
+    
     h1 {
       color: crimson;
       font-weight: 600;
