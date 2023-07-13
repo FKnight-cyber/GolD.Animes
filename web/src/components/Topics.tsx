@@ -51,12 +51,12 @@ const Container = styled.div`
     align-items: center;
     width: 100%;
     margin-bottom: 20px;
+    padding: 0 16px;
     
     h1 {
       color: crimson;
       font-weight: 600;
       font-size: 20px;
-      
     }
 
     h6 {
@@ -78,10 +78,11 @@ const Container = styled.div`
   }
 
   @media (min-width: 776px) {
-    width: 73%;
+    width: 97%;
     padding: 0 20px;
 
     .topicInfo {
+      padding-left: 0;
       padding-right: 12px;
     }
     .animes {

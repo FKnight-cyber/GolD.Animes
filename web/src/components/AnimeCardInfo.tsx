@@ -42,7 +42,7 @@ const Container = styled.div`
 
   position: absolute;
   left: 50%;
- 
+
   z-index: 3;
 
   cursor: default;

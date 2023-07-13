@@ -1,5 +1,7 @@
 'use client'
 
+import { useRouter } from "next/navigation"
+
 import styled from "styled-components"
 import { PlayCircle } from 'lucide-react'
 
@@ -7,8 +9,9 @@ import Image from "next/image"
 import AnimeCardInfo from "./AnimeCardInfo"
 
 export default function AnimeCard({info} : {info: any}) {
+  const router = useRouter();
   return(
-    <Container>
+    <Container onClick={() => router.push(`/anime/${info.id}`)}>
       <div className="imageBox" 
         style={{
           width: '100%' , 
@@ -93,6 +96,10 @@ const Container = styled.div`
 
   .hide {
     position: relative;
+    display: none;
+  }
+
+  .icon {
     display: none;
   }
 

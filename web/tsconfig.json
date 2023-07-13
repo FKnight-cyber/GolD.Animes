@@ -34,7 +34,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "src/app/anime/[id].js"  ],
   "exclude": [
     "node_modules"
   ]
